@@ -1,0 +1,21 @@
+{
+    "name": "egzakt/database-config-bundle",
+    "type": "symfony-bundle",
+    "description": "Database Config Bundle",
+    "keywords": ["egzakt", "database", "config"],
+    "homepage": "https://github.com/egzakt/EgzaktDatabaseConfigBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frédéric Hamelin",
+            "email": "fredhamelin91@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Egzakt\\DatabaseConfigBundle": "" }
+    },
+    "target-dir": "Egzakt/DatabaseConfigBundle"
+}
