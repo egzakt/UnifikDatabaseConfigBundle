@@ -98,9 +98,9 @@ class ContainerBuilder extends BaseContainerBuilder
 
         $queryBuilder
             ->select('e.id AS extension_id, e.name AS extension_name, c.parent_id, p.name AS parent_name, c.id, c.name, c.value')
-            ->from('db_config_config', 'c')
-            ->innerJoin('c', 'db_config_extension', 'e', 'e.id = c.extension_id')
-            ->leftJoin('c', 'db_config_config', 'p', 'p.id = c.parent_id')
+            ->from('container_config', 'c')
+            ->innerJoin('c', 'container_extension', 'e', 'e.id = c.extension_id')
+            ->leftJoin('c', 'container_config', 'p', 'p.id = c.parent_id')
             ->orderBy('e.id')
             ->addOrderBy('c.parent_id')
             ->addOrderBy('c.id');
@@ -175,7 +175,7 @@ class ContainerBuilder extends BaseContainerBuilder
 
         $queryBuilder
             ->select('p.name, p.value')
-            ->from('db_config_parameter', 'p');
+            ->from('container_parameter', 'p');
 
         return $queryBuilder;
     }
