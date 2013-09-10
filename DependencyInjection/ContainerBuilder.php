@@ -4,6 +4,7 @@ namespace Egzakt\DatabaseConfigBundle\DependencyInjection;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
@@ -89,34 +90,32 @@ class ContainerBuilder extends BaseContainerBuilder
     }
 
     /**
-     * Returns the query used to get configs from the database
+     * Returns the query used to get the configs from the database
      *
-     * @return string
+     * @return QueryBuilder
      */
-    protected function getConfigQuery()
+    protected function createConfigQuery()
     {
-        return 'SELECT
-                    e.id as extension_id,
-                    e.name as extension_name,
-                    c.parent_id,
-                    p.name as parent_name,
-                    c.id,
-                    c.name,
-                    c.value
-                FROM db_config_config c
-                INNER JOIN db_config_extension e ON e.id = c.extension_id
-                LEFT JOIN db_config_config p ON p.id = c.parent_id
-                ORDER BY e.id, c.parent_id, c.id
-            ';
+        $queryBuilder = $this->databaseConnection->createQueryBuilder();
+
+        $queryBuilder
+            ->select('e.id AS extension_id, e.name AS extension_name, c.parent_id, p.name AS parent_name, c.id, c.name, c.value')
+            ->from('db_config_config', 'c')
+            ->innerJoin('c', 'db_config_extension', 'e', 'e.id = c.extension_id')
+            ->leftJoin('c', 'db_config_config', 'p', 'p.id = c.parent_id')
+            ->orderBy('e.id')
+            ->addOrderBy('c.parent_id')
+            ->addOrderBy('c.id');
+
+        return $queryBuilder;
     }
 
     /**
      * Adds configs from the database to the current configs
-     *
      */
     protected function addDbConfig()
     {
-        $query = $this->databaseConnection->query($this->getConfigQuery());
+        $query = $this->databaseConnection->query($this->createConfigQuery()->getSQL());
 
         $currentExtension = null;
         $extensions = array();
@@ -170,12 +169,17 @@ class ContainerBuilder extends BaseContainerBuilder
     /**
      * Returns the query used to get parameters from the database
      *
-     * @return string
+     * @return QueryBuilder
      */
     protected function getParametersQuery()
     {
-        return 'SELECT name, value
-                FROM db_config_parameter';
+        $queryBuilder = $this->databaseConnection->createQueryBuilder();
+
+        $queryBuilder
+            ->select('p.name, p.value')
+            ->from('db_config_parameter', 'p');
+
+        return $queryBuilder;
     }
 
     /**
