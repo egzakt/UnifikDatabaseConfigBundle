@@ -1,35 +1,35 @@
 Egzakt\DatabaseConfigBundle\Entity\Config:
-    type: entity
-    table: db_config_config
-    fields:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: AUTO
-        name:
-            type: string
-            length: 255
-        value:
-            type: string
-            length: 255
-    lifecycleCallbacks: {  }
-    oneToMany:
-        children:
-            targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
-            mappedBy: parent
-    manyToOne:
-        parent:
+  type: entity
+  table: container_config
+  fields:
+      id:
+          type: integer
+          id: true
+          generator:
+              strategy: AUTO
+      name:
+          type: string
+          length: 255
+      value:
+          type: string
+          length: 255
+  lifecycleCallbacks: {  }
+  oneToMany:
+      children:
           targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
-          inversedBy: children
-          joinColumn:
-            name: parent_id
-            referencedColumnName: id
-            onDelete: cascade
-        extension:
-          targetEntity: Egzakt\DatabaseConfigBundle\Entity\Extension
-          inversedBy: configs
-          joinColumn:
-            name: extension_id
-            referencedColumnName: id
-            onDelete: cascade
+          mappedBy: parent
+  manyToOne:
+      parent:
+        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
+        inversedBy: children
+        joinColumn:
+          name: parent_id
+          referencedColumnName: id
+          onDelete: cascade
+      extension:
+        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Extension
+        inversedBy: configs
+        joinColumn:
+          name: extension_id
+          referencedColumnName: id
+          onDelete: cascade

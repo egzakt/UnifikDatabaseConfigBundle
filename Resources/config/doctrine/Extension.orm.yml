@@ -1,18 +1,18 @@
 Egzakt\DatabaseConfigBundle\Entity\Extension:
-    type: entity
-    table: db_config_extension
-    fields:
-        id:
-            type: integer
-            id: true
-            generator:
-                strategy: AUTO
-        name:
-            type: string
-            length: 255
-    lifecycleCallbacks: {  }
-    oneToMany:
-        configs:
-          targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
-          mappedBy: extension
+  type: entity
+  table: container_extension
+  fields:
+      id:
+          type: integer
+          id: true
+          generator:
+              strategy: AUTO
+      name:
+          type: string
+          length: 255
+  lifecycleCallbacks: {  }
+  oneToMany:
+      configs:
+        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
+        mappedBy: extension
 
