@@ -39,7 +39,6 @@ class ContainerBuilder extends BaseContainerBuilder
      * Compiles the container.
      *
      * This method adds parameters and configs from the database before calling compiler passes
-     *
      */
     public function compile()
     {
@@ -80,7 +79,6 @@ class ContainerBuilder extends BaseContainerBuilder
 
     /**
      * Closes the database connection
-     *
      */
     protected function closeConnection()
     {
@@ -115,7 +113,7 @@ class ContainerBuilder extends BaseContainerBuilder
      */
     protected function addDbConfig()
     {
-        $query = $this->databaseConnection->query($this->createConfigQuery()->getSQL());
+        $query = $this->databaseConnection->query($this->createConfigQuery());
 
         $currentExtension = null;
         $extensions = array();
@@ -171,7 +169,7 @@ class ContainerBuilder extends BaseContainerBuilder
      *
      * @return QueryBuilder
      */
-    protected function getParametersQuery()
+    protected function createParametersQuery()
     {
         $queryBuilder = $this->databaseConnection->createQueryBuilder();
 
@@ -187,7 +185,7 @@ class ContainerBuilder extends BaseContainerBuilder
      */
     protected function addDbParameters()
     {
-        $query = $this->databaseConnection->query($this->getParametersQuery());
+        $query = $this->databaseConnection->query($this->createParametersQuery());
 
         while (false !== $result = $query->fetchObject()) {
             $this->setParameter($result->name, $result->value);
