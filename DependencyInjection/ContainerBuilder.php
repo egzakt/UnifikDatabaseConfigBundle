@@ -4,6 +4,7 @@ namespace Egzakt\DatabaseConfigBundle\DependencyInjection;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -88,6 +89,28 @@ class ContainerBuilder extends BaseContainerBuilder
     }
 
     /**
+     * Check if a given table name exist in the database
+     *
+     * @param string $table
+     *
+     * @return bool
+     */
+    protected function checkTableExist($table)
+    {
+        $queryBuilder = $this->databaseConnection->createQueryBuilder();
+        $queryBuilder->select('*');
+        $queryBuilder->from($table, 't');
+
+        try {
+            $this->databaseConnection->query($queryBuilder);
+        } catch (DBALException $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Returns the query used to get the configs from the database
      *
      * @return QueryBuilder
@@ -113,6 +136,10 @@ class ContainerBuilder extends BaseContainerBuilder
      */
     protected function addDbConfig()
     {
+        if (false === $this->checkTableExist('container_config')) {
+            return;
+        }
+
         $query = $this->databaseConnection->query($this->createConfigQuery());
 
         $currentExtension = null;
@@ -185,6 +212,10 @@ class ContainerBuilder extends BaseContainerBuilder
      */
     protected function addDbParameters()
     {
+        if (false === $this->checkTableExist('container_parameter')) {
+            return;
+        }
+
         $query = $this->databaseConnection->query($this->createParametersQuery());
 
         while (false !== $result = $query->fetchObject()) {
