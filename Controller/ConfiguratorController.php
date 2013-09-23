@@ -19,16 +19,17 @@ class ConfiguratorController extends Controller
      * List all config of a given extension
      *
      * @param Request $request
+     * @param string $bundleName
      *
      * @return Response
      */
-    public function listAction(Request $request)
+    public function listAction(Request $request, $bundleName)
     {
         $manager = $this->getDoctrine()->getManager();
         $extensionRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Extension');
         $configRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Config');
 
-        $tree = $this->getConfigTreeForBundle('EgzaktLdapBundle');
+        $tree = $this->getConfigNode($bundleName);
         $extension = $extensionRepository->findOneByName($tree->getName());
 
         $form = $this->createForm(new ConfiguratorType(), $extension, array('tree' => $tree, 'request' => $request));
@@ -55,17 +56,17 @@ class ConfiguratorController extends Controller
     }
 
     /**
-     * @param $bundleName
+     * @param string $bundleName
      *
      * @return NodeInterface
      */
-    private function getConfigTreeForBundle($bundleName)
+    private function getConfigNode($bundleName)
     {
         $bundles = $this->get('kernel')->getBundles();
-        $composerManagerBundle = $bundles[$bundleName];
-        $composerManagerExtension = $composerManagerBundle->getContainerExtension();
-        $composerManagerConfiguration = $composerManagerExtension->getConfiguration(array(), new ContainerBuilder());
-        $tree = $composerManagerConfiguration->getConfigTreeBuilder()->buildTree();
+        $bundle = $bundles[$bundleName];
+        $extension = $bundle->getContainerExtension();
+        $configuration = $extension->getConfiguration(array(), new ContainerBuilder());
+        $tree = $configuration->getConfigTreeBuilder()->buildTree();
 
         return $tree;
     }

@@ -25,9 +25,11 @@ class ArrayEntityTransformer implements DataTransformerInterface
 
         $tree = array();
 
-        foreach ($extension->getConfigs() as $config) {
-            if (false == $config->getParent()) {
-                $tree[$config->getName()] = $config->getValue();
+        if ($extension) {
+            foreach ($extension->getConfigs() as $config) {
+                if (false == $config->getParent()) {
+                    $tree[$config->getName()] = $config->getValue();
+                }
             }
         }
 
