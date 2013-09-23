@@ -1,0 +1,5 @@
+# Configurator
+egzakt_configurator:
+    pattern:  /configurator
+    defaults: { _controller: "EgzaktDatabaseConfigBundle:Configurator:list" }
+    options: { do_not_remove: true }

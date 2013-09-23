@@ -14,6 +14,7 @@ Egzakt\DatabaseConfigBundle\Entity\Config:
           type: string
           length: 255
   lifecycleCallbacks: {  }
+  repositoryClass: Egzakt\DatabaseConfigBundle\Entity\ConfigRepository
   oneToMany:
       children:
           targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config

@@ -25,6 +25,7 @@ class Extension
      */
     private $configs;
 
+
     /**
      * Constructor
      */
@@ -69,12 +70,14 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $configs
+     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $config
      * @return Extension
      */
-    public function addConfig(\Egzakt\DatabaseConfigBundle\Entity\Config $configs)
+    public function addConfig(\Egzakt\DatabaseConfigBundle\Entity\Config $config)
     {
-        $this->configs[] = $configs;
+        $config->setExtension($this);
+
+        $this->configs[] = $config;
     
         return $this;
     }
@@ -97,5 +100,13 @@ class Extension
     public function getConfigs()
     {
         return $this->configs;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\Collection $configs
+     */
+    public function setConfigs($configs)
+    {
+        $this->configs = $configs;
     }
 }

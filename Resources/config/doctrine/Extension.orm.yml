@@ -2,17 +2,19 @@ Egzakt\DatabaseConfigBundle\Entity\Extension:
   type: entity
   table: container_extension
   fields:
-      id:
-          type: integer
-          id: true
-          generator:
-              strategy: AUTO
-      name:
-          type: string
-          length: 255
+    id:
+        type: integer
+        id: true
+        generator:
+            strategy: AUTO
+    name:
+        type: string
+        length: 255
   lifecycleCallbacks: {  }
+  repositoryClass: Egzakt\DatabaseConfigBundle\Entity\ExtensionRepository
   oneToMany:
       configs:
         targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
         mappedBy: extension
-
+        cascade: [ persist, remove ]
+        orphanRemoval: true
