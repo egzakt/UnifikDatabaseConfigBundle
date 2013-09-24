@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Configurator</title>
+    </head>
+    <body>
+        {% block body %}
+
+            <style>
+
+                body {
+                    font: 75%/150% Arial, Helvetica, sans-serif;
+                    margin: 0;
+                    padding: 10px;
+                    color: #333;
+                }
+
+                div#container {
+                    width: 700px;
+                }
+
+                nav {
+                    padding: 5px 8px;
+                    margin: 0 0 12px 0;
+                    border: 1px solid #000000;
+                    background-color: #EEEEEE;
+                    font-size:1.167em;
+                    line-height:1.2em;
+                }
+
+                nav ul {
+                    overflow: hidden;
+                    margin: 3px 0;
+                    padding: 0;
+                }
+
+                nav li {
+                    float: left;
+                    margin-right: 20px;
+                    list-style: none;
+                }
+                nav li:last-child {
+                    margin-right: 0;
+                }
+
+                nav a {
+                    text-decoration: none;
+                }
+
+                table#configurator tr td {
+                    text-align: left;
+                    vertical-align: top;
+                    padding: 0 10px 10px 0;
+                }
+
+                table#configurator tr.error td label,
+                table#configurator tr.error td ul {
+                    color: red;
+                }
+
+                table#configurator tr td label {
+                    font-weight: bold;
+                }
+
+                table#configurator tr td input[type=text] {
+                    border: solid 1px;
+                    padding: 3px 4px;
+                    min-width: 200px;
+                }
+            </style>
+
+        <div id="container">
+
+            <nav>
+                <ul>
+                    {% for bundle in bundles %}
+                        <li>
+                            <a href="{{ path('egzakt_configurator_edit', { bundleName: bundle }) }}">{{ bundle }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            {% block content '' %}
+
+        </div>
+
+
+        {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+    </body>
+</html>
+

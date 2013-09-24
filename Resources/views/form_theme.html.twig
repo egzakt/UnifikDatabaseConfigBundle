@@ -1,0 +1,38 @@
+{% extends 'form_table_layout.html.twig' %}
+
+{% block form_row %}
+    <tr {% if errors|length > 0 %} class="error"{% endif %}>
+        <td>
+            {{ form_label(form, label|default(null)) }}
+        </td>
+        <td>
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+        </td>
+    </tr>
+{% endblock %}
+
+{% block form_label %}
+    {% spaceless %}
+        {% if required and checked is not defined %}
+            <span class="required" title="{% trans %}This field is required{% endtrans %}">* </span>
+        {% endif %}
+
+        {% if label is not sameas(false) %}
+            {% if not compound %}
+                {% set label_attr = label_attr|merge({'for': id}) %}
+            {% endif %}
+            {% if required %}
+                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+            {% endif %}
+            {% if label is empty %}
+                {% set label = name|humanize %}
+            {% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans|raw }}</label>{% if withoutColon is not defined %}{% trans %}:{% endtrans %}{% endif %}
+
+            {% if attr.alt is defined %}
+                <div class="note">{{ attr.alt|trans|raw }}</div>
+            {% endif %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_label %}
