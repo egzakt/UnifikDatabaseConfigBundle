@@ -65,7 +65,7 @@ class ConfiguratorController extends Controller
                 $manager->persist($extension);
                 $manager->flush($extension);
 
-                // TODO: clear the container cache
+                $this->get('egzakt_database_config.container_invalidator')->invalidate();
             }
         }
 
