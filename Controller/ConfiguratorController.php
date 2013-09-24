@@ -39,11 +39,13 @@ class ConfiguratorController extends Controller
      */
     public function editAction(Request $request, $bundleName)
     {
-        $manager = $this->getDoctrine()->getManager();
         $extensionRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Extension');
         $configRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Config');
 
-        $tree = $this->getConfigNode($bundleName);
+        $manager = $this->getDoctrine()->getManager();
+        $bundles = $this->get('kernel')->getBundles();
+
+        $tree = $this->getConfigurationTree($bundles[$bundleName]);
         $extension = $extensionRepository->findOneByName($tree->getName());
 
         if (false == $extension) {
@@ -76,28 +78,7 @@ class ConfiguratorController extends Controller
     }
 
     /**
-     * @param string $bundleName
-     *
-     * @return NodeInterface
-     */
-    private function getConfigNode($bundleName)
-    {
-        $bundles = $this->get('kernel')->getBundles();
-        $bundle = $bundles[$bundleName];
-        $extension = $bundle->getContainerExtension();
-
-        if ($extension) {
-            $configuration = $extension->getConfiguration(array(), new ContainerBuilder());
-            $tree = $configuration->getConfigTreeBuilder()->buildTree();
-
-            return $tree;
-        }
-    }
-
-    /**
      * Check each bundle currently loaded in the kernel and validate configurator support
-     *
-     * -
      *
      * @return array
      */
@@ -121,6 +102,13 @@ class ConfiguratorController extends Controller
         return $enabledBundles;
     }
 
+    /**
+     * Return the configuration tree of a bundle or false if not defined
+     *
+     * @param BundleInterface $bundle
+     *
+     * @return mixed
+     */
     private function getConfigurationTree(BundleInterface $bundle)
     {
         $extension = $bundle->getContainerExtension();
@@ -131,10 +119,12 @@ class ConfiguratorController extends Controller
                 return $configuration->getConfigTreeBuilder()->buildTree();
             }
         }
+
+        return false;
     }
 
     /**
-     * Check if a configuration node is configuration enabled
+     * Check if a tree node is configuration enabled
      *
      * @param NodeInterface $arrayNode
      *
