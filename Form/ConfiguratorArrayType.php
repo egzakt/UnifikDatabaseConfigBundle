@@ -14,7 +14,6 @@ class ConfiguratorArrayType extends ConfiguratorType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->processChildren($options['tree'], $builder, $options['request']);
+        $this->processChildren($options['tree'], $builder);
     }
-
 }

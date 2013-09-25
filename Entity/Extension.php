@@ -2,6 +2,7 @@
 
 namespace Egzakt\DatabaseConfigBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -100,6 +101,24 @@ class Extension
     public function getConfigs()
     {
         return $this->configs;
+    }
+
+    /**
+     * Get root configs
+     *
+     * @return ArrayCollection
+     */
+    public function getRootConfigs()
+    {
+        $configs = new ArrayCollection();
+
+        foreach ($this->configs as $config) {
+            if (false == $config->getParent()) {
+                $configs[] = $config;
+            }
+        }
+
+        return $configs;
     }
 
     /**

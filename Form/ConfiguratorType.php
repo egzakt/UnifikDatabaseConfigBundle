@@ -42,7 +42,7 @@ use Egzakt\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
  *   - FloatNode             Supported.
  *   - EnumNode              Supported.
  *   - ScalarNode            Supported.
- *   - ArrayNode             Partial support / Hacky support.
+ *   - ArrayNode             Supported.
  *   - PrototypedArrayNode   No support. This would required lots of work. Maybe in future version.
  *
  *  Validation rules support (http://symfony.com/doc/current/components/config/definition.html#validation-rules)
@@ -66,7 +66,7 @@ class ConfiguratorType extends AbstractType
     {
         $builder->addModelTransformer(new ArrayEntityTransformer());
 
-        $this->processChildren($options['tree'], $builder, $options['request']);
+        $this->processChildren($options['tree'], $builder);
     }
 
     /**
@@ -74,9 +74,8 @@ class ConfiguratorType extends AbstractType
      *
      * @param ArrayNode             $arrayNode
      * @param FormBuilderInterface  $builder
-     * @param Request               $request
      */
-    protected function processChildren(ArrayNode $arrayNode, FormBuilderInterface $builder, Request $request)
+    protected function processChildren(ArrayNode $arrayNode, FormBuilderInterface $builder)
     {
         foreach ($arrayNode->getChildren() as $node) {
             if (false == $node->getAttribute('configurator')) {
@@ -86,10 +85,9 @@ class ConfiguratorType extends AbstractType
                 // PrototypedArrayNode are not currently supported
                 continue;
             } elseif ($node instanceof ArrayNode) {
-                $builder->add($node->getName() . '_activated', 'checkbox'); // used to trigger the validation of the childrens fields
-                $builder->add($node->getName(), new ConfiguratorArrayType(), array('tree' => $node, 'request' => $request));
+                $builder->add($node->getName(), new ConfiguratorArrayType(), array('tree' => $node));
             } else {
-                $this->nodeToField($node, $builder, $request);
+                $this->nodeToField($node, $builder);
             }
         }
     }
@@ -100,9 +98,8 @@ class ConfiguratorType extends AbstractType
      *
      * @param NodeInterface         $node
      * @param FormBuilderInterface  $builder
-     * @param Request               $request
      */
-    protected function nodeToField(NodeInterface $node, FormBuilderInterface $builder, Request $request)
+    protected function nodeToField(NodeInterface $node, FormBuilderInterface $builder)
     {
         $options = array(
             'required' => $node->isRequired(),
@@ -125,7 +122,7 @@ class ConfiguratorType extends AbstractType
             $type = 'text';
         }
 
-        if ($node->isRequired() && $this->parentFormIsActivated($node, $request)) {
+        if ($node->isRequired()) {
             $options['constraints'][] = new NotBlank();
         }
 
@@ -143,53 +140,6 @@ class ConfiguratorType extends AbstractType
         $options['attr']['alt'] = $infos;
 
         $builder->add($node->getName(), $type, $options);
-    }
-
-    /**
-     * The getParent method is missing in the BaseNode class.
-     * It is scheduled available in the 2.4 version (https://github.com/symfony/symfony/commit/d95c245d65af09fe55882204cb2b3a9cf2886f6d)
-     *
-     * Until this is available the only way to get the parent name of a node is by extracting the name from the path.
-     *
-     * @param NodeInterface $node
-     *
-     * @return string
-     */
-    protected function extractParentNameFromNode(NodeInterface $node)
-    {
-        $path = $node->getPath();
-        $match = array();
-
-        if (preg_match('/.*\.(.*)\.' . $node->getName() . '/', $path, $match)) {
-            return $match[1];
-        }
-
-        return false;
-    }
-
-    /**
-     * Ok, there should be a better way to have conditionnal validation based of the parent fields but
-     * this is the simplest solution that I have found right now.
-     *
-     * @param NodeInterface $node
-     * @param Request       $request
-     *
-     * @return bool
-     */
-    protected function parentFormIsActivated(NodeInterface $node, Request $request)
-    {
-        $parentName = $this->extractParentNameFromNode($node);
-
-        // this node have to parent, default to true
-        if (false === $parentName) {
-            return true;
-        }
-
-        $expression = $this->getName() . '[' . $parentName . '_activated]';
-
-        if ($request->get($expression, null, true)) {
-            return true;
-        }
     }
 
     /**
@@ -211,8 +161,7 @@ class ConfiguratorType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => null,
-            'tree' => array(),
-            'request' => null
+            'tree' => array()
         ));
     }
 }

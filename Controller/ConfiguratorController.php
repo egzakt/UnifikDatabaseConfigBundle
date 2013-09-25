@@ -53,7 +53,7 @@ class ConfiguratorController extends Controller
             $extension->setName($tree->getName());
         }
 
-        $form = $this->createForm(new ConfiguratorType(), $extension, array('tree' => $tree, 'request' => $request));
+        $form = $this->createForm(new ConfiguratorType(), $extension, array('tree' => $tree));
 
         if ('POST' == $request->getMethod()) {
 
