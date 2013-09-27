@@ -192,6 +192,11 @@ class Config
 
             return $configArray;
         }
+
+        if (is_numeric($this->value)) {
+            $this->value = intval($this->value);
+        }
+
         return $this->value;
     }
 }
