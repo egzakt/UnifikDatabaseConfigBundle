@@ -82,7 +82,7 @@ class ConfiguratorController extends Controller
      *
      * @return array
      */
-    private function getConfiguratorEnabledBundles()
+    protected function getConfiguratorEnabledBundles()
     {
         $enabledBundles = array();
         $bundles = $this->get('kernel')->getBundles();
@@ -109,7 +109,7 @@ class ConfiguratorController extends Controller
      *
      * @return mixed
      */
-    private function getConfigurationTree(BundleInterface $bundle)
+    protected function getConfigurationTree(BundleInterface $bundle)
     {
         $extension = $bundle->getContainerExtension();
 
@@ -130,7 +130,7 @@ class ConfiguratorController extends Controller
      *
      * @return bool
      */
-    private function isConfiguratorEnabledNode(NodeInterface $arrayNode)
+    protected function isConfiguratorEnabledNode(NodeInterface $arrayNode)
     {
         foreach ($arrayNode->getChildren() as $node) {
             if ($node->getAttribute('configurator')) {
