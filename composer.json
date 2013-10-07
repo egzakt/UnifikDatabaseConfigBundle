@@ -1,9 +1,9 @@
 {
-    "name": "egzakt/database-config-bundle",
+    "name": "flexy/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Database Config Bundle",
-    "keywords": ["egzakt", "database", "config"],
-    "homepage": "https://github.com/egzakt/EgzaktDatabaseConfigBundle",
+    "keywords": ["flexy", "database", "config"],
+    "homepage": "https://github.com/flexy/FlexyDatabaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -15,7 +15,7 @@
         "symfony/symfony": "2.3.*"
     },
     "autoload": {
-        "psr-0": { "Egzakt\\DatabaseConfigBundle": "" }
+        "psr-0": { "Flexy\\DatabaseConfigBundle": "" }
     },
-    "target-dir": "Egzakt/DatabaseConfigBundle"
+    "target-dir": "Flexy/DatabaseConfigBundle"
 }

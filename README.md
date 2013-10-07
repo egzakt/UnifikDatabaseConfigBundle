@@ -1,2 +1,2 @@
-EgzaktDatabaseConfigBundle
+FlexyDatabaseConfigBundle
 ==========================

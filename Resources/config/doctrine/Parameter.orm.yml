@@ -1,4 +1,4 @@
-Egzakt\DatabaseConfigBundle\Entity\Parameter:
+Flexy\DatabaseConfigBundle\Entity\Parameter:
   type: entity
   table: container_parameter
   fields:

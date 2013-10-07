@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\DependencyInjection\Compiler;
+namespace Flexy\DatabaseConfigBundle\DependencyInjection\Compiler;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
@@ -10,8 +10,8 @@ use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
-use Egzakt\DatabaseConfigBundle\Entity\Config;
-use Egzakt\DatabaseConfigBundle\Entity\Extension;
+use Flexy\DatabaseConfigBundle\Entity\Config;
+use Flexy\DatabaseConfigBundle\Entity\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder as BaseContainerBuilder;
 

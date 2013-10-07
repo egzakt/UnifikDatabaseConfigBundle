@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Lib;
+namespace Flexy\DatabaseConfigBundle\Lib;
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Finder\Finder;

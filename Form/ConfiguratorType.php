@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Form;
+namespace Flexy\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Config\Definition\ArrayNode;
 use Symfony\Component\Config\Definition\BooleanNode;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-use Egzakt\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
+use Flexy\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
 
 /**
  * This is only a PARTIAL and EXPERIMENTAL implementation of all the features available in the Symfony configuration tree.

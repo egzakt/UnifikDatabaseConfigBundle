@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Controller;
+namespace Flexy\DatabaseConfigBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\ArrayNode;
@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
-use Egzakt\DatabaseConfigBundle\Entity\Extension;
-use Egzakt\DatabaseConfigBundle\Form\ConfiguratorType;
+use Flexy\DatabaseConfigBundle\Entity\Extension;
+use Flexy\DatabaseConfigBundle\Form\ConfiguratorType;
 
 /**
  * Locale Controller
@@ -24,7 +24,7 @@ class ConfiguratorController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('EgzaktDatabaseConfigBundle::index.html.twig', array(
+        return $this->render('FlexyDatabaseConfigBundle::index.html.twig', array(
             'bundles' => $this->getConfiguratorEnabledBundles()
         ));
     }
@@ -39,8 +39,8 @@ class ConfiguratorController extends Controller
      */
     public function editAction(Request $request, $bundleName)
     {
-        $extensionRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Extension');
-        $configRepository = $this->getDoctrine()->getRepository('EgzaktDatabaseConfigBundle:Config');
+        $extensionRepository = $this->getDoctrine()->getRepository('FlexyDatabaseConfigBundle:Extension');
+        $configRepository = $this->getDoctrine()->getRepository('FlexyDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
         $bundles = $this->get('kernel')->getBundles();
@@ -67,11 +67,11 @@ class ConfiguratorController extends Controller
                 $manager->persist($extension);
                 $manager->flush($extension);
 
-                $this->get('egzakt_database_config.container_invalidator')->invalidate();
+                $this->get('flexy_database_config.container_invalidator')->invalidate();
             }
         }
 
-        return $this->render('EgzaktDatabaseConfigBundle::edit.html.twig', array(
+        return $this->render('FlexyDatabaseConfigBundle::edit.html.twig', array(
             'form' => $form->createView(),
             'bundles' => $this->getConfiguratorEnabledBundles()
         ));

@@ -1,4 +1,4 @@
-Egzakt\DatabaseConfigBundle\Entity\Config:
+Flexy\DatabaseConfigBundle\Entity\Config:
   type: entity
   table: container_config
   fields:
@@ -14,21 +14,21 @@ Egzakt\DatabaseConfigBundle\Entity\Config:
           type: string
           length: 255
   lifecycleCallbacks: {  }
-  repositoryClass: Egzakt\DatabaseConfigBundle\Entity\ConfigRepository
+  repositoryClass: Flexy\DatabaseConfigBundle\Entity\ConfigRepository
   oneToMany:
       children:
-          targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
+          targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
           mappedBy: parent
   manyToOne:
       parent:
-        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
+        targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
         inversedBy: children
         joinColumn:
           name: parent_id
           referencedColumnName: id
           onDelete: cascade
       extension:
-        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Extension
+        targetEntity: Flexy\DatabaseConfigBundle\Entity\Extension
         inversedBy: configs
         joinColumn:
           name: extension_id

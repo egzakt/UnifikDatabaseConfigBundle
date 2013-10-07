@@ -1,10 +1,10 @@
 # Configurator
-egzakt_configurator:
+flexy_configurator:
     pattern:  /configurator
-    defaults: { _controller: "EgzaktDatabaseConfigBundle:Configurator:index" }
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Configurator:index" }
     options: { do_not_remove: true }
 
-egzakt_configurator_edit:
+flexy_configurator_edit:
     pattern:  /configurator/{bundleName}
-    defaults: { _controller: "EgzaktDatabaseConfigBundle:Configurator:edit" }
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Configurator:edit" }
     options: { do_not_remove: true }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Entity;
+namespace Flexy\DatabaseConfigBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -71,10 +71,10 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $config
+     * @param \Flexy\DatabaseConfigBundle\Entity\Config $config
      * @return Extension
      */
-    public function addConfig(\Egzakt\DatabaseConfigBundle\Entity\Config $config)
+    public function addConfig(\Flexy\DatabaseConfigBundle\Entity\Config $config)
     {
         $config->setExtension($this);
 
@@ -86,9 +86,9 @@ class Extension
     /**
      * Remove configs
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $configs
+     * @param \Flexy\DatabaseConfigBundle\Entity\Config $configs
      */
-    public function removeConfig(\Egzakt\DatabaseConfigBundle\Entity\Config $configs)
+    public function removeConfig(\Flexy\DatabaseConfigBundle\Entity\Config $configs)
     {
         $this->configs->removeElement($configs);
     }

@@ -1,4 +1,4 @@
-Egzakt\DatabaseConfigBundle\Entity\Extension:
+Flexy\DatabaseConfigBundle\Entity\Extension:
   type: entity
   table: container_extension
   fields:
@@ -11,10 +11,10 @@ Egzakt\DatabaseConfigBundle\Entity\Extension:
         type: string
         length: 255
   lifecycleCallbacks: {  }
-  repositoryClass: Egzakt\DatabaseConfigBundle\Entity\ExtensionRepository
+  repositoryClass: Flexy\DatabaseConfigBundle\Entity\ExtensionRepository
   oneToMany:
       configs:
-        targetEntity: Egzakt\DatabaseConfigBundle\Entity\Config
+        targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
         mappedBy: extension
         cascade: [ persist, remove ]
         orphanRemoval: true

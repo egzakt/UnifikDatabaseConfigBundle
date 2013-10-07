@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Entity;
+namespace Flexy\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,12 +31,12 @@ class Config
     private $children;
 
     /**
-     * @var \Egzakt\DatabaseConfigBundle\Entity\Config
+     * @var \Flexy\DatabaseConfigBundle\Entity\Config
      */
     private $parent;
 
     /**
-     * @var \Egzakt\DatabaseConfigBundle\Entity\Extension
+     * @var \Flexy\DatabaseConfigBundle\Entity\Extension
      */
     private $extension;
 
@@ -107,10 +107,10 @@ class Config
     /**
      * Add children
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $children
+     * @param \Flexy\DatabaseConfigBundle\Entity\Config $children
      * @return Config
      */
-    public function addChildren(\Egzakt\DatabaseConfigBundle\Entity\Config $children)
+    public function addChildren(\Flexy\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children[] = $children;
     
@@ -120,9 +120,9 @@ class Config
     /**
      * Remove children
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $children
+     * @param \Flexy\DatabaseConfigBundle\Entity\Config $children
      */
-    public function removeChildren(\Egzakt\DatabaseConfigBundle\Entity\Config $children)
+    public function removeChildren(\Flexy\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children->removeElement($children);
     }
@@ -140,10 +140,10 @@ class Config
     /**
      * Set parent
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Config $parent
+     * @param \Flexy\DatabaseConfigBundle\Entity\Config $parent
      * @return Config
      */
-    public function setParent(\Egzakt\DatabaseConfigBundle\Entity\Config $parent = null)
+    public function setParent(\Flexy\DatabaseConfigBundle\Entity\Config $parent = null)
     {
         $this->parent = $parent;
     
@@ -153,7 +153,7 @@ class Config
     /**
      * Get parent
      *
-     * @return \Egzakt\DatabaseConfigBundle\Entity\Config 
+     * @return \Flexy\DatabaseConfigBundle\Entity\Config
      */
     public function getParent()
     {
@@ -163,10 +163,10 @@ class Config
     /**
      * Set extension
      *
-     * @param \Egzakt\DatabaseConfigBundle\Entity\Extension $extension
+     * @param \Flexy\DatabaseConfigBundle\Entity\Extension $extension
      * @return Config
      */
-    public function setExtension(\Egzakt\DatabaseConfigBundle\Entity\Extension $extension = null)
+    public function setExtension(\Flexy\DatabaseConfigBundle\Entity\Extension $extension = null)
     {
         $this->extension = $extension;
     
@@ -176,7 +176,7 @@ class Config
     /**
      * Get extension
      *
-     * @return \Egzakt\DatabaseConfigBundle\Entity\Extension 
+     * @return \Flexy\DatabaseConfigBundle\Entity\Extension
      */
     public function getExtension()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Entity;
+namespace Flexy\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping as ORM;

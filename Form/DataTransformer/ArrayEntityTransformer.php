@@ -1,12 +1,12 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Form\DataTransformer;
+namespace Flexy\DatabaseConfigBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
 
-use Egzakt\DatabaseConfigBundle\Entity\Config;
-use Egzakt\DatabaseConfigBundle\Entity\Extension;
+use Flexy\DatabaseConfigBundle\Entity\Config;
+use Flexy\DatabaseConfigBundle\Entity\Extension;
 
 class ArrayEntityTransformer implements DataTransformerInterface
 {

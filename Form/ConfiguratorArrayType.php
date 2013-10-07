@@ -1,6 +1,6 @@
 <?php
 
-namespace Egzakt\DatabaseConfigBundle\Form;
+namespace Flexy\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 

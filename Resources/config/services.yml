@@ -1,7 +1,7 @@
 parameters:
-    egzakt_database_config.container_invalidator.class: Egzakt\DatabaseConfigBundle\Lib\ContainerInvalidator
+    flexy_database_config.container_invalidator.class: Flexy\DatabaseConfigBundle\Lib\ContainerInvalidator
 
 services:
-    egzakt_database_config.container_invalidator:
-        class: %egzakt_database_config.container_invalidator.class%
+    flexy_database_config.container_invalidator:
+        class: %flexy_database_config.container_invalidator.class%
         arguments: [ @kernel ]
