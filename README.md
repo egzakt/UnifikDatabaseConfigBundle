@@ -2,6 +2,8 @@ FlexyDatabaseConfigBundle
 ==========================
 FlexyDatabaseConfigBundle allows you to store configurations from the configuration tree of a bundle and parameters in a database table. Those configurations and parameters will override those defined in the ```app/config/config.yml``` and ```app/config/parameters.yml``` files.
 
+Configurations are all cached using Symfony's container caching mechanism and do not hit the database.
+
 ## Content
 * Installation
 * How to use
@@ -10,11 +12,9 @@ FlexyDatabaseConfigBundle allows you to store configurations from the configurat
 
 1. Add this to your composer.json :
 ```js
-{
-    require {
+    "require": {
         'flexy/database-config-bundle': 'dev-master'
     }
-}
 ```
 
 2. Run a composer update :
@@ -26,10 +26,7 @@ composer update
 ```php
 public function registerBundles()
 {
-    $bundles = array(
-        // ...
         new Flexy\DatabaseConfigBundle\FlexyDatabaseConfigBundle(),
-    );
 }
 ```
 
@@ -41,9 +38,9 @@ protected function getContainerBuilder()
 }
 ```
 
-5. Update your database :
+5. Update the database schema :
 ```bash
-app/console doctrine:schema:update --dump-sql
+app/console doctrine:schema:update --force
 ```
 
 ## How to use
@@ -79,3 +76,7 @@ Parameters are stored in the ```container_parameter``` table in the database. To
 | id  | name             | value                     |
 | --: | ---------------- | ------------------------- |
 | 1   | custom_parameter | My custom parameter value |
+
+### Clear the cache
+
+As database configurations and parameters are cached, you will need to do a `app/console cache:clear` every time you wish to reload the configuration coming from the database.
