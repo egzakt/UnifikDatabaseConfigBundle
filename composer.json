@@ -1,11 +1,15 @@
 {
     "name": "flexy/database-config-bundle",
     "type": "symfony-bundle",
-    "description": "Database Config Bundle",
-    "keywords": ["flexy", "database", "config"],
-    "homepage": "https://github.com/flexy/FlexyDatabaseConfigBundle",
+    "description": "Allows management of Symfony's container configuration from the database",
+    "keywords": ["flexy", "symfony", "database", "container", "config"],
+    "homepage": "https://github.com/egzakt/FlexyDatabaseConfigBundle",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Hubert Perron",
+            "email": "hubert.perron@gmail.com"
+        },
         {
             "name": "Frédéric Hamelin",
             "email": "fredhamelin91@gmail.com"
