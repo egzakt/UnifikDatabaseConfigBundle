@@ -43,7 +43,12 @@ class ContainerBuilder extends BaseContainerBuilder
      */
     public function compile()
     {
-        $this->initConnection();
+        try {
+            $this->initConnection();
+        } catch (\Exception $e) {
+            parent::compile();
+        }
+
         $this->addDbParameters();
         $this->addDbConfig();
         $this->closeConnection();
