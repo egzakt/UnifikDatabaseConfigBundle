@@ -6,7 +6,6 @@ use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Query\QueryBuilder;
-use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
@@ -45,13 +44,13 @@ class ContainerBuilder extends BaseContainerBuilder
     {
         try {
             $this->initConnection();
-        } catch (\Exception $e) {
+            $this->addDbParameters();
+            $this->addDbConfig();
+            $this->closeConnection();
+        } catch (\PDOException $e) {
             parent::compile();
+            return;
         }
-
-        $this->addDbParameters();
-        $this->addDbConfig();
-        $this->closeConnection();
 
         parent::compile();
     }
