@@ -32,11 +32,12 @@ public function registerBundles()
 
 4. Extend the getContainerBuilder() method in AppKernel.php :
 ```php
+use Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+...
 protected function getContainerBuilder()
 {
-        return new Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder(
-            new ParameterBag($this->getKernelParameters())
-        );
+        return new ContainerBuilder(new ParameterBag($this->getKernelParameters()));
 }
 ```
 
