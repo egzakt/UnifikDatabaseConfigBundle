@@ -13,7 +13,7 @@ Configurations are all cached using Symfony's container caching mechanism and do
 1. Add this to your composer.json :
 ```js
     "require": {
-        'flexy/database-config-bundle': 'dev-master'
+        "flexy/database-config-bundle": "dev-master"
     }
 ```
 
@@ -34,7 +34,9 @@ public function registerBundles()
 ```php
 protected function getContainerBuilder()
 {
-    return new Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder(new ParameterBag($this->getKernelParameters()));
+    return new Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder(
+        new ParameterBag($this->getKernelParameters())
+    );
 }
 ```
 
