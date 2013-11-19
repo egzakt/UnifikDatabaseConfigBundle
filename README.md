@@ -34,9 +34,9 @@ public function registerBundles()
 ```php
 protected function getContainerBuilder()
 {
-    return new Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder(
-        new ParameterBag($this->getKernelParameters())
-    );
+        return new Flexy\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder(
+            new ParameterBag($this->getKernelParameters())
+        );
 }
 ```
 
