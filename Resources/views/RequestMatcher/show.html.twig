@@ -1,0 +1,54 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block body -%}
+    <h1>RequestMatcher</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Path</th>
+                <td>{{ entity.path }}</td>
+            </tr>
+            <tr>
+                <th>Host</th>
+                <td>{{ entity.host }}</td>
+            </tr>
+            <tr>
+                <th>Ips</th>
+                <td>
+                    {% for ip in entity.ips %}
+                        {{ ip }}<br/>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Methods</th>
+                <td>
+                    {% for method in entity.methods %}
+                        {{ method }}<br/> 
+                    {% endfor %}                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('flexy_requestmatcher') }}">
+            {{ 'requestmatcher.list.back'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('flexy_requestmatcher_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

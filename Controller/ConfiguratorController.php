@@ -93,7 +93,7 @@ class ConfiguratorController extends Controller
                     if ($tree && $this->isConfiguratorEnabledNode($tree)) {
                         $enabledBundles[] = $name;
                     }
-                }
+                }                
             } catch (\Exception $e) {
                 // skip error'd bundle
             }

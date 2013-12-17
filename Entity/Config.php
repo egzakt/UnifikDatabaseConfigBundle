@@ -187,7 +187,18 @@ class Config
         if (count($this->children) > 0) {
             $configArray = array();
             foreach ($this->children as $child) {
-                $configArray[$child->getName()] = $child->getConfigTree();
+                if (isset($configArray[$child->getName()])) {
+                    if (is_string($configArray[$child->getName()])) {
+                        $configArray[$child->getName()] = array($configArray[$child->getName()]);
+                    }
+                    $configArray[$child->getName()][] = $child->getConfigTree();
+                } else {
+                    if ($child->getName() == null) {
+                        $configArray[] = $child->getConfigTree();
+                    } else {
+                        $configArray[$child->getName()] = $child->getConfigTree();
+                    }
+                }
             }
 
             return $configArray;

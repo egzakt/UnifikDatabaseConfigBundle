@@ -1,0 +1,30 @@
+flexy_requestmatcher:
+    pattern:  /
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:index" }
+
+flexy_requestmatcher_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:show" }
+
+flexy_requestmatcher_new:
+    pattern:  /new
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:new" }
+
+flexy_requestmatcher_create:
+    pattern:  /create
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:create" }
+    requirements: { _method: post }
+
+flexy_requestmatcher_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:edit" }
+
+flexy_requestmatcher_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:update" }
+    requirements: { _method: post|put }
+
+flexy_requestmatcher_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FlexyDatabaseConfigBundle:RequestMatcher:delete" }
+    requirements: { _method: post|delete }

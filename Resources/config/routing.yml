@@ -8,3 +8,11 @@ flexy_configurator_edit:
     pattern:  /configurator/{bundleName}
     defaults: { _controller: "FlexyDatabaseConfigBundle:Configurator:edit" }
     options: { do_not_remove: true }
+
+flexy_requestmatcher:
+    resource: "@FlexyDatabaseConfigBundle/Resources/config/routing/requestmatcher.yml"
+    prefix:   /securedarea
+
+flexy_role:
+    resource: "@FlexyDatabaseConfigBundle/Resources/config/routing/role.yml"
+    prefix:   /role

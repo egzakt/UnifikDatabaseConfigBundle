@@ -1,0 +1,56 @@
+# Role
+role:
+    field:
+        id: Id
+        name: Nom
+        role: Role (doit commencer par ROLE_)
+        parent: 
+            label: Parent
+            empty_label: Sélectionnez le rôle parent
+    list:
+        title: Liste des rôles
+        add: Créer un nouveau rôle
+        back: Retour à la liste des rôles
+    edit:
+        title: Modification rôle
+        submit: Mettre à jour le rôle
+    show:
+        title: Role
+        name: Nom du rôle
+    new:
+        title: Creation nouveau rôle
+        submit: Créer le rôle
+    flash:
+        updated: Le rôle a été mis à jour
+        created: Le rôle a été créé
+        deleted: Le rôle a été supprimé
+
+# RequestMatcher
+requestmatcher:
+    field:
+        id: Id
+        path: Path
+        host: Host
+        ips:
+            label: Ips
+            add: Nouvelle adresse Ip
+        methods: Methodes
+    list:
+        title: Liste des zones sécurisées
+        add: Créer une nouvelle zone sécurisée
+        back: Retour à la liste des zones sécurisées
+    edit:
+        title: Modification zone sécurisée
+        submit: Mettre à jour la zone sécurisée
+    show:
+        title: Zone sécurisée
+        name: Nom de la zone sécurisée
+    new:
+        title: Creation zone sécurisée
+        submit: Créer la zone sécurisée
+    flash:
+        updated: La zone sécurisée a été mis à jour
+        created: La zone sécurisée a été créé
+        deleted: La zone sécurisée a été supprimé
+        
+        

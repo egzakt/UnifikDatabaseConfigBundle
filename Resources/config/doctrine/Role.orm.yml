@@ -1,0 +1,33 @@
+Flexy\DatabaseConfigBundle\Entity\Role:
+    type: entity
+    table: container_security_role
+    repositoryClass: Flexy\DatabaseConfigBundle\Entity\RoleRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        role:
+            type: string
+            length: '100'
+    lifecycleCallbacks: {  }
+    manyToMany:
+        requestMatchers:
+            targetEntity: Flexy\DatabaseConfigBundle\Entity\RequestMatcher
+            mappedBy: roles
+    oneToMany:
+        children:
+            targetEntity: Flexy\DatabaseConfigBundle\Entity\Role
+            mappedBy: parent
+    manyToOne:
+        parent:
+            targetEntity: Flexy\DatabaseConfigBundle\Entity\Role
+            inversedBy: children
+            joinColumn:
+                name: parent_id
+                referencedColumnName: id
+

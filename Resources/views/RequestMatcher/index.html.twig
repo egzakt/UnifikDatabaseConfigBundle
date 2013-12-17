@@ -1,0 +1,63 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block body -%}
+    <h1>{{ 'requestmatcher.list.title'|trans }}</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{{ 'requestmatcher.field.id'|trans }}</th>
+                <th>{{ 'requestmatcher.field.path'|trans }}</th>
+                <th>{{ 'requestmatcher.field.host'|trans }}</th>
+                <th>{{ 'requestmatcher.field.ips.label'|trans }}</th>
+                <th>{{ 'requestmatcher.field.methods'|trans }}</th>
+                <th>{{ 'role.field.role'|trans }}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('flexy_requestmatcher_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.path }}</td>
+                <td>{{ entity.host }}</td>
+                <td>
+                    {% for ip in entity.ips %}
+                        {{ ip }}<br/>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for method in entity.methods %}
+                        {{ method }}<br/> 
+                    {% endfor %}                    
+                </td>
+                <td>
+                    {% for role in entity.roles %}
+                        {{ role }}<br/> 
+                    {% endfor %}                    
+                </td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('flexy_requestmatcher_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('flexy_requestmatcher_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('flexy_requestmatcher_new') }}">
+                {{ 'requestmatcher.list.add'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

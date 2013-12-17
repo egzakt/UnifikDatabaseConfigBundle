@@ -1,0 +1,51 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block body -%}
+    <h1>{{ 'role.list.title'|trans }}</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>{{ 'role.field.id'|trans }}</th>
+                <th>{{ 'role.field.name'|trans }}</th>
+                <th>{{ 'role.field.role'|trans }}</th>
+                <th>{{ 'role.field.parent.label'|trans }}</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('flexy_role_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.role }}</td>
+                <td>
+                    {% if entity.parent.role is defined %} 
+                        {{ entity.parent.name }}
+                    {% endif %}
+                </td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('flexy_role_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('flexy_role_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('flexy_role_new') }}">
+                {{ 'role.list.add'|trans }}
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

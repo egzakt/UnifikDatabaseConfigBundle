@@ -1,0 +1,27 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+{% form_theme form 'FlexyDatabaseConfigBundle::form_theme.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block flexy_javascript %}        
+    {% javascripts 
+        '@FlexyDatabaseConfigBundle/Resources/public/js/vendor/jquery-1.7.2.min.js'
+        '@FlexyDatabaseConfigBundle/Resources/public/js/collection.js' 
+         output='js/flexy.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <h1>{{ 'requestmatcher.new.title'|trans }}</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('flexy_requestmatcher') }}">
+            {{ 'requestmatcher.list.back'|trans }}
+        </a>
+    </li>
+</ul>
+{% endblock %}

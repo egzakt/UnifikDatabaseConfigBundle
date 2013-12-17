@@ -1,0 +1,36 @@
+Flexy\DatabaseConfigBundle\Entity\Role:
+    properties:
+        name:
+            - Regex:
+                pattern: "/^\w+/"
+                message: name_notvalid
+        role:
+            - Regex:
+                pattern: "/^ROLE_\w+/"
+                message: role_notvalid
+        parent:
+            - Type:
+                type: Flexy\DatabaseConfigBundle\Entity\Role
+                message: roleparent_notvalid
+                
+Flexy\DatabaseConfigBundle\Entity\RequestMatcher:
+    properties:
+        host:
+            - Regex:
+                pattern: "/^\w+/"
+                message: host_notvalid
+        ips:
+            - All:
+                - NotBlank: ~
+                - Ip:
+                    message: ips_notvalid
+        methods:
+            - All:
+                - NotBlank: ~
+                - Choice: { callback: getAvailableMethods }
+        roles:
+            - Valid: ~
+            - All:
+                - Type:
+                    type: Flexy\DatabaseConfigBundle\Entity\Role
+                    message: roles_notvalid

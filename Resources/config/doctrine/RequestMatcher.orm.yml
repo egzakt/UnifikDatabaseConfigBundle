@@ -1,0 +1,38 @@
+Flexy\DatabaseConfigBundle\Entity\RequestMatcher:
+    type: entity
+    table: container_security_requestmatcher
+    repositoryClass: Flexy\DatabaseConfigBundle\Entity\RequestMatcherRepository
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        path:
+            type: string
+            length: 255
+        host:
+            type: string
+            length: 255
+            nullable: true
+        ips:
+            type: array
+            nullable: true
+        methods:
+            type: array
+            nullable: true
+    lifecycleCallbacks: {  }
+    manyToMany:
+        roles:
+            targetEntity: Flexy\DatabaseConfigBundle\Entity\Role
+            inversedBy: requestMatchers
+            cascade: [ persist ]
+            joinTable:
+                name: tj_requestmatcher_role
+                joinColumns:
+                    rqm_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    rol_id:
+                        referencedColumnName: id          
+                

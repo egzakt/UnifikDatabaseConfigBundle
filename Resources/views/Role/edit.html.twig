@@ -1,0 +1,19 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+{% form_theme edit_form 'FlexyDatabaseConfigBundle::form_theme.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block body -%}
+    <h1>{{ 'role.edit.title'|trans }}</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('flexy_role') }}">
+            {{ 'role.list.back'|trans }}
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

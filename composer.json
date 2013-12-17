@@ -2,7 +2,7 @@
     "name": "flexy/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
-    "keywords": ["flexy", "symfony", "database", "container", "config"],
+    "keywords": ["flexy", "symfony", "database", "container", "config", "security"],
     "homepage": "https://github.com/egzakt/FlexyDatabaseConfigBundle",
     "license": "MIT",
     "authors": [
@@ -13,11 +13,29 @@
         {
             "name": "Frédéric Hamelin",
             "email": "fredhamelin91@gmail.com"
-        }
+        },
+        {
+            "name": "Akambi Fagbohoun",
+            "email": "contact@akambi-fagbohoun.com"
+        }        
     ],
     "require": {
-        "symfony/symfony": "2.3.*"
+        "symfony/symfony": "2.3.*",
+        "jquery/jquery": "1.9.1"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.9.1",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.9.1.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
     "autoload": {
         "psr-0": { "Flexy\\DatabaseConfigBundle": "" }
     },

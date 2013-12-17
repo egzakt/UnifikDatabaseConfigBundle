@@ -1,0 +1,38 @@
+{% extends 'FlexyDatabaseConfigBundle::layout.html.twig' %}
+
+{% trans_default_domain 'FlexyDatabaseConfigBundle' %}
+
+{% block body -%}
+    <h1>{{ 'role.show.title'|trans }}</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>{{ 'role.field.id'|trans }}</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'role.field.name'|trans }}</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'role.field.role'|trans }}</th>
+                <td>{{ entity.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('flexy_role') }}">
+            {{ 'role.list.back'|trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('flexy_role_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

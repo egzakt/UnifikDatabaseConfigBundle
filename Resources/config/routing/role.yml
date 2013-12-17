@@ -1,0 +1,30 @@
+flexy_role:
+    pattern:  /
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:index" }
+
+flexy_role_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:show" }
+
+flexy_role_new:
+    pattern:  /new
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:new" }
+
+flexy_role_create:
+    pattern:  /create
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:create" }
+    requirements: { _method: post }
+
+flexy_role_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:edit" }
+
+flexy_role_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:update" }
+    requirements: { _method: post|put }
+
+flexy_role_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FlexyDatabaseConfigBundle:Role:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,54 @@
+# Role
+role:
+    field:
+        id: Id
+        name: Name
+        role: Role (must start with ROLE_)
+        parent: 
+            label: Parent
+            empty_label: Choose a parent role
+    list:
+        title: Role list
+        add: Create new role
+        back: Back to role list
+    edit:
+        title: Edit role
+        submit: Update role
+    show:
+        title: Role
+        name: Role name
+    new:
+        title: Role creation
+        submit: Create role
+    flash:
+        updated: The role has been updated
+        created: The role has been created
+        deleted: The role has been deleted
+
+# RequestMatcher
+requestmatcher:
+    field:
+        id: Id
+        path: Path
+        host: Host
+        ips: 
+            label: Ips
+            add: Add Ip
+        methods: Methods
+    list:
+        title: Secured area list
+        add: Create new secured area
+        back: Back to secured area list
+    edit:
+        title: Edit secured area
+        submit: Update secured area
+    show:
+        title: Secured area
+        name: Secured area name
+    new:
+        title: Secured area creation
+        submit: Create secured area
+    flash:
+        updated: The secured area has been updated
+        created: The secured area has been created
+        deleted: The secured area has been deleted

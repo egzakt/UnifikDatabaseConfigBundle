@@ -1,5 +1,26 @@
 {% extends 'form_table_layout.html.twig' %}
 
+{% block _flexy_databaseconfigbundle_requestmatcher_ips_widget %}
+    {% spaceless %}
+    <div class="sf2collection form-search form-horizontal">
+        {{ form_widget(form, {'attr' : {'class' : 'sf2collectionlist unstyled'}}) }}
+        <button id="add-another-ip" class="add-another-item btn btn-success">{{ 'requestmatcher.field.ips.add'|trans({}, 'FlexyDatabaseConfigBundle') }}</button>
+    </div>
+    {% endspaceless %}
+{% endblock %}                
+    
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+        <div class="selectcheckbox">
+            {% for child in form %}
+                {{ form_row(child) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
 {% block form_row %}
     <tr {% if errors|length > 0 %} class="error"{% endif %}>
         <td>
@@ -14,9 +35,6 @@
 
 {% block form_label %}
     {% spaceless %}
-        {% if required and checked is not defined %}
-            <span class="required" title="{% trans %}This field is required{% endtrans %}">* </span>
-        {% endif %}
 
         {% if label is not sameas(false) %}
             {% if not compound %}
@@ -28,7 +46,13 @@
             {% if label is empty %}
                 {% set label = name|humanize %}
             {% endif %}
-            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans|raw }}</label>{% if withoutColon is not defined %}{% trans %}:{% endtrans %}{% endif %}
+            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+                {% if required and checked is not defined %}
+                    <span class="required" title="{% trans %}This field is required{% endtrans %}">* </span>
+                {% endif %}
+                {{ label|trans({}, translation_domain)|raw }}
+                {% if withoutColon is not defined %}{% trans %}:{% endtrans %}{% endif %}
+            </label>
 
             {% if attr.alt is defined %}
                 <div class="note">{{ attr.alt|trans|raw }}</div>
