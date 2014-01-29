@@ -1,5 +1,11 @@
+
 UnifikDatabaseConfigBundle
 ==========================
+
+**Attention!** This bundle was previously know as FlexyDatabaseConfigBundle. Make sure to update your composer.json project file to reflect the name change.
+
+---
+
 UnifikDatabaseConfigBundle allows you to store configurations from the configuration tree of a bundle and parameters in a database table. Those configurations and parameters will override those defined in the ```app/config/config.yml``` and ```app/config/parameters.yml``` files.
 
 Configurations are all cached using Symfony's container caching mechanism and do not hit the database.
