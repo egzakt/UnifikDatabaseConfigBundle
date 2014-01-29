@@ -1,6 +1,6 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\Command;
+namespace Unifik\DatabaseConfigBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,12 +18,12 @@ class ContainerInvalidateCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('flexy:container:invalidate')
+            ->setName('unifik:container:invalidate')
             ->setDescription('Invalidate the container cache')
             ->setHelp(<<<EOF
-The <info>flexy:container:invalidate</info> invalidate (clear) the container cache.
+The <info>unifik:container:invalidate</info> invalidate (clear) the container cache.
 
-<info>php app/console flexy:container:invalidate --env=dev</info>
+<info>php app/console unifik:container:invalidate --env=dev</info>
 EOF
             )
         ;
@@ -37,7 +37,7 @@ EOF
         $kernel = $this->getContainer()->get('kernel');
         $output->writeln(sprintf('Invalidating container for the <info>%s</info> environment', $kernel->getEnvironment()));
 
-        $this->getContainer()->get('flexy_database_config.container_invalidator')->invalidate();
+        $this->getContainer()->get('unifik_database_config.container_invalidator')->invalidate();
     }
 
 }

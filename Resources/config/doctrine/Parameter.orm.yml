@@ -1,4 +1,4 @@
-Flexy\DatabaseConfigBundle\Entity\Parameter:
+Unifik\DatabaseConfigBundle\Entity\Parameter:
   type: entity
   table: container_parameter
   fields:

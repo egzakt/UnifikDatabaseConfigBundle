@@ -1,4 +1,4 @@
-Flexy\DatabaseConfigBundle\Entity\Config:
+Unifik\DatabaseConfigBundle\Entity\Config:
   type: entity
   table: container_config
   fields:
@@ -14,21 +14,21 @@ Flexy\DatabaseConfigBundle\Entity\Config:
           type: string
           length: 255
   lifecycleCallbacks: {  }
-  repositoryClass: Flexy\DatabaseConfigBundle\Entity\ConfigRepository
+  repositoryClass: Unifik\DatabaseConfigBundle\Entity\ConfigRepository
   oneToMany:
       children:
-          targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
+          targetEntity: Unifik\DatabaseConfigBundle\Entity\Config
           mappedBy: parent
   manyToOne:
       parent:
-        targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
+        targetEntity: Unifik\DatabaseConfigBundle\Entity\Config
         inversedBy: children
         joinColumn:
           name: parent_id
           referencedColumnName: id
           onDelete: cascade
       extension:
-        targetEntity: Flexy\DatabaseConfigBundle\Entity\Extension
+        targetEntity: Unifik\DatabaseConfigBundle\Entity\Extension
         inversedBy: configs
         joinColumn:
           name: extension_id

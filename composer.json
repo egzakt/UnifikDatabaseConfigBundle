@@ -1,9 +1,9 @@
 {
-    "name": "flexy/database-config-bundle",
+    "name": "unifik/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
-    "keywords": ["flexy", "symfony", "database", "container", "config"],
-    "homepage": "https://github.com/egzakt/FlexyDatabaseConfigBundle",
+    "keywords": ["unifik", "symfony", "database", "container", "config"],
+    "homepage": "https://github.com/egzakt/UnifikDatabaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -19,7 +19,7 @@
         "symfony/symfony": "~2.1"
     },
     "autoload": {
-        "psr-0": { "Flexy\\DatabaseConfigBundle": "" }
+        "psr-0": { "Unifik\\DatabaseConfigBundle": "" }
     },
-    "target-dir": "Flexy/DatabaseConfigBundle"
+    "target-dir": "Unifik/DatabaseConfigBundle"
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\Entity;
+namespace Unifik\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,12 +31,12 @@ class Config
     private $children;
 
     /**
-     * @var \Flexy\DatabaseConfigBundle\Entity\Config
+     * @var \Unifik\DatabaseConfigBundle\Entity\Config
      */
     private $parent;
 
     /**
-     * @var \Flexy\DatabaseConfigBundle\Entity\Extension
+     * @var \Unifik\DatabaseConfigBundle\Entity\Extension
      */
     private $extension;
 
@@ -107,10 +107,10 @@ class Config
     /**
      * Add children
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Config $children
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
      * @return Config
      */
-    public function addChildren(\Flexy\DatabaseConfigBundle\Entity\Config $children)
+    public function addChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children[] = $children;
     
@@ -120,9 +120,9 @@ class Config
     /**
      * Remove children
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Config $children
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
      */
-    public function removeChildren(\Flexy\DatabaseConfigBundle\Entity\Config $children)
+    public function removeChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children->removeElement($children);
     }
@@ -140,10 +140,10 @@ class Config
     /**
      * Set parent
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Config $parent
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $parent
      * @return Config
      */
-    public function setParent(\Flexy\DatabaseConfigBundle\Entity\Config $parent = null)
+    public function setParent(\Unifik\DatabaseConfigBundle\Entity\Config $parent = null)
     {
         $this->parent = $parent;
     
@@ -153,7 +153,7 @@ class Config
     /**
      * Get parent
      *
-     * @return \Flexy\DatabaseConfigBundle\Entity\Config
+     * @return \Unifik\DatabaseConfigBundle\Entity\Config
      */
     public function getParent()
     {
@@ -163,10 +163,10 @@ class Config
     /**
      * Set extension
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Extension $extension
+     * @param \Unifik\DatabaseConfigBundle\Entity\Extension $extension
      * @return Config
      */
-    public function setExtension(\Flexy\DatabaseConfigBundle\Entity\Extension $extension = null)
+    public function setExtension(\Unifik\DatabaseConfigBundle\Entity\Extension $extension = null)
     {
         $this->extension = $extension;
     
@@ -176,7 +176,7 @@ class Config
     /**
      * Get extension
      *
-     * @return \Flexy\DatabaseConfigBundle\Entity\Extension
+     * @return \Unifik\DatabaseConfigBundle\Entity\Extension
      */
     public function getExtension()
     {

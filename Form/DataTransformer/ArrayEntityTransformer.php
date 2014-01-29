@@ -1,12 +1,12 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\Form\DataTransformer;
+namespace Unifik\DatabaseConfigBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
 
-use Flexy\DatabaseConfigBundle\Entity\Config;
-use Flexy\DatabaseConfigBundle\Entity\Extension;
+use Unifik\DatabaseConfigBundle\Entity\Config;
+use Unifik\DatabaseConfigBundle\Entity\Extension;
 
 class ArrayEntityTransformer implements DataTransformerInterface
 {
