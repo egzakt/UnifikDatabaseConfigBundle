@@ -1,10 +1,10 @@
 # Configurator
-flexy_configurator:
+unifik_configurator:
     pattern:  /configurator
-    defaults: { _controller: "FlexyDatabaseConfigBundle:Configurator:index" }
+    defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:index" }
     options: { do_not_remove: true }
 
-flexy_configurator_edit:
+unifik_configurator_edit:
     pattern:  /configurator/{bundleName}
-    defaults: { _controller: "FlexyDatabaseConfigBundle:Configurator:edit" }
+    defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:edit" }
     options: { do_not_remove: true }

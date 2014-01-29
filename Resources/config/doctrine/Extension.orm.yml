@@ -1,4 +1,4 @@
-Flexy\DatabaseConfigBundle\Entity\Extension:
+Unifik\DatabaseConfigBundle\Entity\Extension:
   type: entity
   table: container_extension
   fields:
@@ -11,10 +11,10 @@ Flexy\DatabaseConfigBundle\Entity\Extension:
         type: string
         length: 255
   lifecycleCallbacks: {  }
-  repositoryClass: Flexy\DatabaseConfigBundle\Entity\ExtensionRepository
+  repositoryClass: Unifik\DatabaseConfigBundle\Entity\ExtensionRepository
   oneToMany:
       configs:
-        targetEntity: Flexy\DatabaseConfigBundle\Entity\Config
+        targetEntity: Unifik\DatabaseConfigBundle\Entity\Config
         mappedBy: extension
         cascade: [ persist, remove ]
         orphanRemoval: true

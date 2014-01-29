@@ -1,7 +1,7 @@
 parameters:
-    flexy_database_config.container_invalidator.class: Flexy\DatabaseConfigBundle\Lib\ContainerInvalidator
+    unifik_database_config.container_invalidator.class: Unifik\DatabaseConfigBundle\Lib\ContainerInvalidator
 
 services:
-    flexy_database_config.container_invalidator:
-        class: %flexy_database_config.container_invalidator.class%
+    unifik_database_config.container_invalidator:
+        class: %unifik_database_config.container_invalidator.class%
         arguments: [ @kernel ]

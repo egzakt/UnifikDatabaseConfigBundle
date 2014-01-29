@@ -1,6 +1,6 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\Entity;
+namespace Unifik\DatabaseConfigBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -71,10 +71,10 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Config $config
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $config
      * @return Extension
      */
-    public function addConfig(\Flexy\DatabaseConfigBundle\Entity\Config $config)
+    public function addConfig(\Unifik\DatabaseConfigBundle\Entity\Config $config)
     {
         $config->setExtension($this);
 
@@ -86,9 +86,9 @@ class Extension
     /**
      * Remove configs
      *
-     * @param \Flexy\DatabaseConfigBundle\Entity\Config $configs
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $configs
      */
-    public function removeConfig(\Flexy\DatabaseConfigBundle\Entity\Config $configs)
+    public function removeConfig(\Unifik\DatabaseConfigBundle\Entity\Config $configs)
     {
         $this->configs->removeElement($configs);
     }

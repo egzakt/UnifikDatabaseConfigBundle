@@ -1,6 +1,6 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\DependencyInjection\Compiler;
+namespace Unifik\DatabaseConfigBundle\DependencyInjection\Compiler;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
@@ -9,8 +9,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
-use Flexy\DatabaseConfigBundle\Entity\Config;
-use Flexy\DatabaseConfigBundle\Entity\Extension;
+use Unifik\DatabaseConfigBundle\Entity\Config;
+use Unifik\DatabaseConfigBundle\Entity\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder as BaseContainerBuilder;
 

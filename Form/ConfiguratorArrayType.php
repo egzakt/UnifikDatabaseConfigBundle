@@ -1,6 +1,6 @@
 <?php
 
-namespace Flexy\DatabaseConfigBundle\Form;
+namespace Unifik\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 
