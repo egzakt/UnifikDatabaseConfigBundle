@@ -1,6 +1,6 @@
 Unifik\DatabaseConfigBundle\Entity\Config:
   type: entity
-  table: container_config
+  table: config_configuration
   fields:
       id:
           type: integer

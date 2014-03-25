@@ -1,10 +1,5 @@
 # Configurator
-unifik_configurator:
-    pattern:  /configurator
-    defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:index" }
-    options: { do_not_remove: true }
-
 unifik_configurator_edit:
-    pattern:  /configurator/{bundleName}
+    pattern:  /configurator/{bundleName}/{namespace}
     defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:edit" }
     options: { do_not_remove: true }

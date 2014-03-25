@@ -1,7 +1,13 @@
-parameters:
-    unifik_database_config.container_invalidator.class: Unifik\DatabaseConfigBundle\Lib\ContainerInvalidator
+
 
 services:
-    unifik_database_config.container_invalidator:
-        class: %unifik_database_config.container_invalidator.class%
-        arguments: [ @kernel ]
+    unifik_database_config.repositories.extension:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - Unifik\DatabaseConfigBundle\Entity\Extension
+
+    unifik_database_config.services.configuration:
+        class: Unifik\DatabaseConfigBundle\Service\ConfigurationService
+        arguments: [ "@kernel", "@unifik_database_config.repositories.extension" ]

@@ -6,7 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Extension
+ * Extension entity
+ *
+ * @package Unifik\DatabaseConfigBundle\Entity
+ *
+ * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  */
 class Extension
 {
@@ -22,6 +26,11 @@ class Extension
     private $name;
 
     /**
+     * @var string namespace defines the scope of the extension, allowing multiple configurations for an extension
+     */
+    private $namespace;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $configs;
@@ -34,11 +43,11 @@ class Extension
     {
         $this->configs = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -48,20 +57,21 @@ class Extension
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $name the extension name
+     *
      * @return Extension
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -71,7 +81,8 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $config
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $config the root configuration node attached to the extension
+     *
      * @return Extension
      */
     public function addConfig(\Unifik\DatabaseConfigBundle\Entity\Config $config)
@@ -79,14 +90,16 @@ class Extension
         $config->setExtension($this);
 
         $this->configs[] = $config;
-    
+
         return $this;
     }
 
     /**
      * Remove configs
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $configs
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $configs the root node of the configuration to remove
+     *
+     * @return void
      */
     public function removeConfig(\Unifik\DatabaseConfigBundle\Entity\Config $configs)
     {
@@ -96,7 +109,7 @@ class Extension
     /**
      * Get configs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getConfigs()
     {
@@ -122,10 +135,55 @@ class Extension
     }
 
     /**
-     * @param \Doctrine\Common\Collections\Collection $configs
+     * Set configurations
+     *
+     * @param \Doctrine\Common\Collections\Collection $configs the collection of configurations to attach the extension
+     *
+     * @return void
      */
     public function setConfigs($configs)
     {
         $this->configs = $configs;
     }
+
+    /**
+     * Get Namespace
+     *
+     * @return string
+     */
+    public function getNamespace()
+    {
+        return $this->namespace;
+    }
+
+    /**
+     * Set the namespace
+     *
+     * @param string $namespace the namespace
+     *
+     * @return Config
+     */
+    public function setNamespace($namespace)
+    {
+        $this->namespace = $namespace;
+
+        return $this;
+    }
+
+    /**
+     * Get a config by its name
+     *
+     * @param string $configName the config name
+     * @return Ambigous <\Doctrine\Common\Collections\ArrayCollection, unknown>|NULL
+     */
+    public function get($configName)
+    {
+        foreach ($this->getRootConfigs() as $config) {
+            if ($config->getName() == $configName) {
+                return $config;
+            }
+        }
+        return null;
+    }
+
 }

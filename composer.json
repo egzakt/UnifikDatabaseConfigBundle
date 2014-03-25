@@ -1,9 +1,9 @@
 {
-    "name": "unifik/database-config-bundle",
+    "name": "evoucher/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
     "keywords": ["unifik", "symfony", "database", "container", "config"],
-    "homepage": "https://github.com/egzakt/UnifikDatabaseConfigBundle",
+    "homepage": "https://github.com/evoucher/UnifikDatabaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -13,6 +13,10 @@
         {
             "name": "Frédéric Hamelin",
             "email": "fredhamelin91@gmail.com"
+        },
+        {
+            "name": "Guillaume Petit",
+            "email": "guillaume.petit@sword-group.com"
         }
     ],
     "require": {

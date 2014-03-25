@@ -1,6 +1,6 @@
 Unifik\DatabaseConfigBundle\Entity\Extension:
   type: entity
-  table: container_extension
+  table: config_extension
   fields:
     id:
         type: integer
@@ -8,6 +8,9 @@ Unifik\DatabaseConfigBundle\Entity\Extension:
         generator:
             strategy: AUTO
     name:
+        type: string
+        length: 255
+    namespace:
         type: string
         length: 255
   lifecycleCallbacks: {  }
