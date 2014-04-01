@@ -1,16 +1,12 @@
-{% extends 'UnifikDatabaseConfigBundle::layout.html.twig' %}
 {% form_theme form 'UnifikDatabaseConfigBundle::form_theme.html.twig' %}
 
-{% block content %}
+{{ form_start(form, { attr: {'novalidate': 'novalidate'} }) }}
 
-    {{ form_start(form, { attr: {'novalidate': 'novalidate'} }) }}
+    {{ form_widget(form) }}
 
-        {{ form_widget(form) }}
+    {% block buttons %}
+        <button type="submit">{% trans %}Save{% endtrans %}</button>
+    {% endblock %}
 
-        {% block buttons %}
-            <button type="submit">{% trans %}Save{% endtrans %}</button>
-        {% endblock %}
+{{ form_end(form) }}
 
-    {{ form_end(form) }}
-
-{% endblock %}

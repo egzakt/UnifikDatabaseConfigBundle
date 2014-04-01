@@ -1,11 +1,14 @@
 <?php
 
 namespace Unifik\DatabaseConfigBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Config
+ *
+ * @package Unifik.DatabaseConfigBundle.Entity
+ *
+ * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  */
 class Config
 {
@@ -47,11 +50,11 @@ class Config
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,20 +64,21 @@ class Config
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $name the config item name
+     *
      * @return Config
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -84,20 +88,21 @@ class Config
     /**
      * Set value
      *
-     * @param string $value
+     * @param string $value the config item value
+     *
      * @return Config
      */
     public function setValue($value)
     {
         $this->value = $value;
-    
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
@@ -107,20 +112,23 @@ class Config
     /**
      * Add children
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children the child to add
+     *
      * @return Config
      */
     public function addChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children[] = $children;
-    
+
         return $this;
     }
 
     /**
      * Remove children
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children the child to remove
+     *
+     * @return void
      */
     public function removeChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children)
     {
@@ -130,7 +138,7 @@ class Config
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -140,13 +148,14 @@ class Config
     /**
      * Set parent
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $parent
+     * @param \Unifik\DatabaseConfigBundle\Entity\Config $parent the parent to set
+     *
      * @return Config
      */
     public function setParent(\Unifik\DatabaseConfigBundle\Entity\Config $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
@@ -163,13 +172,14 @@ class Config
     /**
      * Set extension
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Extension $extension
+     * @param \Unifik\DatabaseConfigBundle\Entity\Extension $extension the extension to set
+     *
      * @return Config
      */
     public function setExtension(\Unifik\DatabaseConfigBundle\Entity\Extension $extension = null)
     {
         $this->extension = $extension;
-    
+
         return $this;
     }
 
@@ -183,7 +193,13 @@ class Config
         return $this->extension;
     }
 
-    public function getConfigTree() {
+    /**
+     * Return the configuration tree (associative array)
+     *
+     * @return multitype:array |string
+     */
+    public function getConfigTree()
+    {
         if (count($this->children) > 0) {
             $configArray = array();
             foreach ($this->children as $child) {
@@ -199,4 +215,26 @@ class Config
 
         return $this->value;
     }
+
+    /**
+     * Get config child by name
+     *
+     * @param string $configName the config name
+     *
+     * @return Config|NULL
+     */
+    public function get($configName)
+    {
+        foreach ($this->getChildren() as $config) {
+            if ($config->getName() == $configName) {
+                if ($config->getValue() != '') {
+                    return $config->getValue();
+                } else {
+                    return $config;
+                }
+            }
+        }
+        return null;
+    }
+
 }

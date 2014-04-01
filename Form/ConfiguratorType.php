@@ -18,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 use Unifik\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
+use Unifik\DatabaseConfigBundle\Form\DataTransformer\BooleanTransformer;
 
 /**
  * This is only a PARTIAL and EXPERIMENTAL implementation of all the features available in the Symfony configuration tree.
@@ -107,8 +108,11 @@ class ConfiguratorType extends AbstractType
             'attr' => array()
         );
 
+        $transformers = array();
+
         if ($node instanceof BooleanNode) {
             $type = 'checkbox';
+            $transformers[] = new BooleanTransformer();
         } elseif ($node instanceof IntegerNode) {
             $type = 'number';
         } elseif ($node instanceof FloatNode) {
@@ -139,7 +143,15 @@ class ConfiguratorType extends AbstractType
 
         $options['attr']['alt'] = $infos;
 
-        $builder->add($node->getName(), $type, $options);
+        $field = $builder->create($node->getName(), $type, $options);
+
+        foreach ($transformers as $transformer) {
+            $field->addModelTransformer($transformer);
+        }
+
+        $builder->add($field);
+
+
     }
 
     /**
