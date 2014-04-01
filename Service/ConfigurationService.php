@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Config\Definition\BooleanNode;
 use Symfony\Component\Config\Definition\IntegerNode;
 use Symfony\Component\Config\Definition\FloatNode;
+use Monolog\Logger;
 
 /** ConfigurationService
  *
@@ -31,22 +32,24 @@ class ConfigurationService
     private $kernel;
 
     /**
-     * @var array
+     * @var Logger the logger
      */
-    private $mergedConfiguration;
+    private $logger;
 
     /**
      * Constructor
      *
      * @param \AppKernel          $kernel              the application kernel
      * @param ExtensionRepository $extensionRepository the repository for the extension entity
+     * @param Logger              $logger              the logger
      *
      * @return void
      */
-    public function __construct(\AppKernel $kernel, ExtensionRepository $extensionRepository)
+    public function __construct(\AppKernel $kernel, ExtensionRepository $extensionRepository, Logger $logger)
     {
         $this->kernel = $kernel;
         $this->extensionRepository = $extensionRepository;
+        $this->logger = $logger;
     }
 
      /**
@@ -95,6 +98,7 @@ class ConfigurationService
      */
     protected function getConfigurationFromDatabase($extensionName, $namespace, $path)
     {
+        $value = null;
         $extension = $this->extensionRepository->findOneBy(
             array(
                 'name' => $extensionName,
@@ -123,6 +127,7 @@ class ConfigurationService
      */
     protected function getDefaultConfigurationNode($bundleName, $path)
     {
+
         $tree = $this->getContainerConfigurationTree($this->kernel->getBundle($bundleName));
 
         foreach ($path as $pathElement) {

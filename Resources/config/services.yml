@@ -1,5 +1,3 @@
-
-
 services:
     unifik_database_config.repositories.extension:
         class: Doctrine\ORM\EntityRepository
@@ -10,4 +8,4 @@ services:
 
     unifik_database_config.services.configuration:
         class: Unifik\DatabaseConfigBundle\Service\ConfigurationService
-        arguments: [ "@kernel", "@unifik_database_config.repositories.extension" ]
+        arguments: [ "@kernel", "@unifik_database_config.repositories.extension", "@logger" ]
