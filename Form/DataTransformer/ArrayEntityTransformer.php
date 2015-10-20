@@ -80,7 +80,7 @@ class ArrayEntityTransformer implements DataTransformerInterface
                 $value = array_filter($value);
             }
 
-            if (empty($value)) {
+            if (null === $value) {
                 continue;
             }
 
