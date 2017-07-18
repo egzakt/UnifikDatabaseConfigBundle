@@ -73,7 +73,7 @@ class ContainerBuilder extends BaseContainerBuilder
 
         if (array_key_exists('connections', $params)) {
             $defaultEntityManager = $mergedConfig['orm']['default_entity_manager'];
-            $defaultConnection = $mergedConfig['entity_managers'][$defaultEntityManager]['connection'];
+            $defaultConnection = $mergedConfig['orm']['entity_managers'][$defaultEntityManager]['connection'];
             $params = $params['connections'][$defaultConnection];
         }
 
