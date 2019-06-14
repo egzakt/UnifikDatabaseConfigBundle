@@ -1,5 +1,5 @@
 {
-    "name": "unifik/database-config-bundle",
+    "name": "rchoque/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
     "keywords": ["unifik", "symfony", "database", "container", "config"],
