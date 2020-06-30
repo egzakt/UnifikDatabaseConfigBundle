@@ -194,7 +194,14 @@ class Config
         }
 
         if (is_numeric($this->value)) {
-            $this->value = intval($this->value);
+            $floatVal = floatval($this->value);
+            if($floatVal && intval($floatVal) != $floatVal)
+            {
+                // $num is a float
+                $this->value = floatval($this->value);
+            } else {
+                $this->value = intval($this->value);
+            }
         }
 
         return $this->value;
